@@ -109,7 +109,7 @@ public class Context : IModEslApi
             Channel.CloseAsync();
     }
 
-    private void CheckArgument(bool success, string message)
+    private static void CheckArgument(bool success, string message)
     {
         if (!success) Console.WriteLine(message);
         // todo log here

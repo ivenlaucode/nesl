@@ -94,7 +94,7 @@ public class EslFrameDecoder : ReplayingDecoder<int>
                     if (contentLength != null)
                     {
                         var bodyLine = ReadLine(bodyBytes, contentLength.Value);
-                        if (_currentMessage != null) _currentMessage.AddBodyLine(bodyLine);
+                        _currentMessage?.AddBodyLine(bodyLine);
                     }
 
                 // end of message
@@ -110,7 +110,7 @@ public class EslFrameDecoder : ReplayingDecoder<int>
         }
     }
 
-    private string ReadToLineFeedOrFail(IByteBuffer buffer, int maxLineLegth)
+    private static string ReadToLineFeedOrFail(IByteBuffer buffer, int maxLineLegth)
     {
         var sb = new StringBuilder(64);
         while (true)
@@ -133,7 +133,7 @@ public class EslFrameDecoder : ReplayingDecoder<int>
             }
     }
 
-    private string ReadLine(IByteBuffer buffer, int maxLineLength)
+    private static string ReadLine(IByteBuffer buffer, int maxLineLength)
     {
         var sb = new StringBuilder(64);
         while (buffer.IsReadable())

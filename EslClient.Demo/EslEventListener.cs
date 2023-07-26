@@ -46,7 +46,7 @@ namespace EslClient.Demo
                 }
             }
 
-            var uuid = headers == null ? "" : headers["Unique-ID"];
+            var uuid = headers != null && headers.ContainsKey("Unique-ID") ? headers["Unique-ID"] : string.Empty;
 
             if ("PLAYBACK_START" == eventName)
             {
